@@ -23,8 +23,9 @@ export default function Navbar() {
             <Link href="/about" className="hover:scale-105 hover:font-semibold transition-transform duration-300">About</Link>
             <Link href="/blog" className="hover:scale-105 hover:font-semibold transition-transform duration-300">Blog</Link>
             <Link href="/contact" className="hover:scale-105 hover:font-semibold transition-transform duration-300">Contact</Link>
+            <Link href="/login">
             <Button variant="outline">Login</Button>
-            <Button variant="outline">Sign Up</Button>
+            </Link>
             <ModeToggle />
           </div>
           <div className="md:hidden flex items-center">
