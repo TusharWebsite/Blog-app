@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,19 +12,53 @@ import { ModeToggle } from "./theme-btn";
 
 export default function Navbar() {
   return (
-<nav className="sticky top-0 bg-white/80 shadow-md backdrop-blur-sm bg-background/40 z-50">
+    <nav className="sticky top-0 z-50 shadow-md backdrop-blur-sm bg-background/40 dark:bg-gray-900 dark:text-white dark:bg-background/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <span className="text-xl font-bold">Tushar Blog</span>
+            <span className="text-xl font-bold">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="mr-2 inline-block h-6 w-6"
+              >
+                <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
+              </svg>
+              Tushar Blog
+            </span>
           </div>
           <div className="hidden md:flex space-x-4 items-center">
-            <Link href="/" className="hover:scale-105 hover:font-semibold transition-transform duration-300">Home</Link>
-            <Link href="/about" className="hover:scale-105 hover:font-semibold transition-transform duration-300">About</Link>
-            <Link href="/blog" className="hover:scale-105 hover:font-semibold transition-transform duration-300">Blog</Link>
-            <Link href="/contact" className="hover:scale-105 hover:font-semibold transition-transform duration-300">Contact</Link>
+            <Link
+              href="/"
+              className="hover:scale-105 hover:font-semibold transition-transform duration-300"
+            >
+              Home
+            </Link>
+            <Link
+              href="/about"
+              className="hover:scale-105 hover:font-semibold transition-transform duration-300"
+            >
+              About
+            </Link>
+            <Link
+              href="/login"
+              className="hover:scale-105 hover:font-semibold transition-transform duration-300"
+            >
+              Blog
+            </Link>
+            <Link
+              href="/contact"
+              className="hover:scale-105 hover:font-semibold transition-transform duration-300"
+            >
+              Contact
+            </Link>
             <Link href="/login">
-            <Button variant="outline">Login</Button>
+              <Button variant="outline">Login</Button>
             </Link>
             <ModeToggle />
           </div>
@@ -34,7 +68,7 @@ export default function Navbar() {
             </span>
             <Sheet>
               <SheetTrigger asChild>
-                <div className="text-gray-500 hover:text-black focus:outline-none cursor-pointer">
+                <div className="text-gray-500 dark:text-white hover:text-black focus:outline-none cursor-pointer">
                   <svg
                     className="h-6 w-6"
                     xmlns="http://www.w3.org/2000/svg"
@@ -51,9 +85,14 @@ export default function Navbar() {
                   </svg>
                 </div>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-white dark:bg-gray-800 text-black dark:text-white">
+              <SheetContent
+                side="right"
+                className="bg-white dark:bg-gray-800 text-black dark:text-white"
+              >
                 <SheetHeader>
-                  <SheetTitle className="text-lg font-semibold">Menu</SheetTitle>
+                  <SheetTitle className="text-lg font-semibold">
+                    Menu
+                  </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col space-y-4 mt-4 text-center">
                   <Link href="/" className="hover:underline">

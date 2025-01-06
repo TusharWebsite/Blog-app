@@ -1,12 +1,38 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-
-export const metadata = {
-  title: "Authentication",
-  description: "Authentication page for user signup.",
-};
+import { useState } from "react";
+import { useRouter } from "next/navigation"; // Import useRouter
 
 export default function AuthenticationPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter(); // Initialize router
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Login Successfully");
+        router.push("/blog"); // Navigate to blog page after success
+      } else {
+        alert(data.message || "Something went wrong");
+      }
+    } catch (error) {
+      console.log("Getting Error Login", error);
+      alert("Getting Error Login");
+    }
+  };
+
   return (
     <>
       {/* Mobile View */}
@@ -53,7 +79,7 @@ export default function AuthenticationPage() {
             >
               <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
             </svg>
-            Acme Inc
+            Tushar Blog
           </div>
           <div className="relative z-10 mt-auto text-lg">
             <blockquote className="space-y-2">
@@ -77,7 +103,7 @@ export default function AuthenticationPage() {
             </div>
 
             {/* Form */}
-            <form className="space-y-4" method="POST" action="/api/login/route">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="email"
@@ -88,6 +114,8 @@ export default function AuthenticationPage() {
                 <input
                   type="email"
                   id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border-[1px] border-gray"
                   placeholder="you@example.com"
                 />
@@ -95,26 +123,26 @@ export default function AuthenticationPage() {
               <div>
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium text-gray-700 "
+                  className="block text-sm font-medium text-gray-700"
                 >
                   Password
                 </label>
                 <input
                   type="password"
                   id="password"
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border-[1px] border-gray"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border-[1px] border-gray bt-[30px]"
                   placeholder="Enter your password"
                 />
               </div>
               <button
                 type="submit"
-                className="w-full rounded-md bg-indigo-600 py-2 px-4 text-white hover:bg-indigo-700"
+                className="w-full rounded-md bg-indigo-600 py-2 px-4 text-white hover:bg-indigo-700 mt-[30px]"
               >
                 Sign Up
               </button>
             </form>
-
-
           </div>
         </div>
       </div>

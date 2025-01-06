@@ -1,8 +1,10 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   return (
     <main>
       <section className="container px-4 py-10 mx-auto lg:h-128 lg:flex lg:items-center lg:justify-between">
@@ -71,11 +73,13 @@ export default function Home() {
                     A brief description of the blog post goes here. It should be
                     engaging and informative.
                   </p>
-                  <Link href={`/blog`} passHref>
-                    <Button className="m-2" variant="outline">
-                      Read More
-                    </Button>
-                  </Link>
+                  <Button
+                    className="m-2"
+                    variant="outline"
+                    onClick={() => router.push("/login")}
+                  >
+                    Read More
+                  </Button>
                 </div>
               </div>
             </div>
@@ -171,7 +175,6 @@ export default function Home() {
         </div>
       </section>
 
-
       {/* Testimonials Section */}
       <section className="py-16 bg-white dark:bg-gray-800">
         <div className="container px-4 mx-auto text-center">
@@ -244,8 +247,7 @@ export default function Home() {
             {[
               {
                 question: "What topics do you cover?",
-                answer:
-                  "We cover technology, coding, travel, food, and more.",
+                answer: "We cover technology, coding, travel, food, and more.",
               },
               {
                 question: "How can I contribute?",
@@ -262,9 +264,7 @@ export default function Home() {
                 key={index}
                 className="p-4 border rounded-lg dark:border-gray-700"
               >
-                <h4 className="font-semibold text-blue-600">
-                  {faq.question}
-                </h4>
+                <h4 className="font-semibold text-blue-600">{faq.question}</h4>
                 <p className="mt-2 text-gray-600 dark:text-gray-300">
                   {faq.answer}
                 </p>
