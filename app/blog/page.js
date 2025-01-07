@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+export const dynamic = "force-dynamic"; // Forces dynamic rendering
 
 async function fetchBlogs() {
   const baseURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
